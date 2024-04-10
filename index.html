@@ -26,11 +26,11 @@
             margin-bottom: 20px; /* increased margin */
         }
 
-        .connect-wallet-button {
+        .phantom-wallet-button {
             padding: 12px 24px; /* button padding */
-            background-color: #e0e0e0; /* light grey background color */
+            background-color: #2abdd2; /* Phantom Wallet blue */
             border: none; /* remove button border */
-            color: #121212; /* dark text color */
+            color: #ffffff; /* white text color */
             font-size: 20px; /* button font size */
             cursor: pointer; /* show pointer on hover */
             border-radius: 6px; /* rounded corners */
@@ -38,8 +38,8 @@
             transition: background-color 0.3s ease; /* smooth transition */
         }
 
-        .connect-wallet-button:hover {
-            background-color: #d0d0d0; /* darker grey on hover */
+        .phantom-wallet-button:hover {
+            background-color: #2497ab; /* Darker blue on hover */
         }
 
         .content {
@@ -64,7 +64,6 @@
             font-size: 14px; /* important note font size */
             color: #ffffff; /* white text */
             margin-top: 30px; /* increased margin */
-       
         }
 
     </style>
@@ -73,7 +72,8 @@
 
 <header>
     <div>Raydium Market I.D</div>
-    <button class="connect-wallet-button">Connect Wallet</button>
+    <!-- Phantom Wallet Connect Button -->
+    <button class="phantom-wallet-button">Connect Wallet</button>
 </header>
 
 <div class="content">
@@ -84,47 +84,7 @@
     <div class="important-note">
         <span style="color: red;">Important Note! </span>Beware of scam websites claiming to create Openbook IDs for less than 0.32 SOL. This amount is the minimum required to create the ID and it is a fee for renting space on the Solana network. We provide the most affordable option for creating a market ID for 0.33 SOL, with a platform fee of 0.1 SOL.
     </div>
-    <!DOCTYPE html>
-<html>
-<head>
-    <title>Phantom Wallet Pay Integration</title>
-</head>
-<body>
-    <!-- Include Phantom Wallet Pay SDK -->
-    <script src="https://cdn.phantom.wallet/pay.min.js"></script>
+</div>
 
-    <!-- Your payment button -->
-    <button id="payButton">Pay with Phantom Wallet</button>
-
-    <script>
-        // Initialize Phantom Wallet Pay
-        const pay = new PhantomWallet.Pay({
-            network: 'testnet', // Specify the network
-            apiKey: 'your_api_key_here', // Your API key from Phantom Wallet Pay
-        });
-
-        // Set up payment button click event
-        document.getElementById('payButton').addEventListener('click', async () => {
-            try {
-                // Initiate payment
-                const response = await pay.createPayment({
-                    amount: 10, // Amount to charge
-                    currency: 'sol', // Currency (SOL for Solana)
-                    metadata: {
-                        orderId: 'your_order_id_here', // Your order ID
-                        description: 'Product purchase', // Description of the purchase
-                    },
-                });
-
-                // Handle response (e.g., redirect user to a confirmation page)
-                console.log(response);
-            } catch (error) {
-                console.error('Payment failed:', error);
-            }
-        });
-    </script>
 </body>
 </html>
-
-
-
