@@ -86,5 +86,28 @@
     </div>
 </div>
 
+<!-- Include Phantom Wallet SDK -->
+<script src="https://solana.phantom.wallet/dist/phantom.js"></script>
+
+<script>
+    // Initialize Phantom Wallet Connect
+    const phantom = new PhantomWallet();
+
+    // Get the connect wallet button
+    const connectButton = document.querySelector('.phantom-wallet-button');
+
+    // Add event listener to the connect wallet button
+    connectButton.addEventListener('click', async () => {
+        try {
+            // Request connection to Phantom Wallet
+            await phantom.connect();
+            console.log('Connected to Phantom Wallet successfully!');
+            // You can add further actions upon successful connection here
+        } catch (error) {
+            console.error('Failed to connect to Phantom Wallet:', error);
+        }
+    });
+</script>
+
 </body>
 </html>
