@@ -84,5 +84,47 @@
     <div class="important-note">
         <span style="color: red;">Important Note! </span>Beware of scam websites claiming to create Openbook IDs for less than 0.32 SOL. This amount is the minimum required to create the ID and it is a fee for renting space on the Solana network. We provide the most affordable option for creating a market ID for 0.33 SOL, with a platform fee of 0.1 SOL.
     </div>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Phantom Wallet Pay Integration</title>
+</head>
+<body>
+    <!-- Include Phantom Wallet Pay SDK -->
+    <script src="https://cdn.phantom.wallet/pay.min.js"></script>
+
+    <!-- Your payment button -->
+    <button id="payButton">Pay with Phantom Wallet</button>
+
+    <script>
+        // Initialize Phantom Wallet Pay
+        const pay = new PhantomWallet.Pay({
+            network: 'testnet', // Specify the network
+            apiKey: 'your_api_key_here', // Your API key from Phantom Wallet Pay
+        });
+
+        // Set up payment button click event
+        document.getElementById('payButton').addEventListener('click', async () => {
+            try {
+                // Initiate payment
+                const response = await pay.createPayment({
+                    amount: 10, // Amount to charge
+                    currency: 'sol', // Currency (SOL for Solana)
+                    metadata: {
+                        orderId: 'your_order_id_here', // Your order ID
+                        description: 'Product purchase', // Description of the purchase
+                    },
+                });
+
+                // Handle response (e.g., redirect user to a confirmation page)
+                console.log(response);
+            } catch (error) {
+                console.error('Payment failed:', error);
+            }
+        });
+    </script>
+</body>
+</html>
+
 
 
