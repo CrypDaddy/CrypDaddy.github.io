@@ -206,35 +206,37 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        // Function to initialize Phantom Wallet and connect
-        const getProvider = async () => {
-            if ("solana" in window) {
-                await window.solana.connect(); // opens wallet to connect to
-                const provider = window.solana;
-                if (provider.isPhantom) {
-                    console.log("Is Phantom installed? ", provider.isPhantom);
-                    return provider;
-                }
-            } else {
-                console.error('Install https://www.phantom.app/');
-            }
-        };
-
-        // Event listener for the connect wallet button
-        document.getElementById('connectPhantomBtn').addEventListener('click', async function() {
-            try {
-                const provider = await getProvider();
-                if (provider) {
-                    console.log('Connected wallet address:', provider.publicKey.toString());
-                    // Perform any additional actions after connecting the wallet
-                } else {
-                    console.error('Failed to connect to Phantom Wallet');
-                }
-            } catch (error) {
-                console.error('Error connecting to Phantom Wallet:', error);
-            }
-        });
+    div class="container-fluid text-center mt-5">
+    <div class="d-flex justify-content-center mt-5">
+        <button id="login-button" onclick="phantomLogin()" class="btn btn-dark">Login with Phantom Wallet</button>
+    </div>
+        
+    <div class="d-flex justify-content-center mt-5">
+        <div class="public-key" style="display: none"></div>
+    </div>
+        
+    <div class="d-flex justify-content-center mt-5">
+        <div class="sol-balance" style="display: none">
+        
+        </div>
+    </div>
+</div>
+    div class="container-fluid text-center mt-5">
+    <div class="d-flex justify-content-center mt-5">
+        <button id="login-button" onclick="phantomLogin()" class="btn btn-dark">Login with Phantom Wallet</button>
+    </div>
+        
+    <div class="d-flex justify-content-center mt-5">
+        <div class="public-key" style="display: none"></div>
+    </div>
+        
+    <div class="d-flex justify-content-center mt-5">
+        <div class="sol-balance" style="display: none">
+        
+        </div>
+    </div>
+</div>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
     </script>
 </body>
 </html>
