@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raydium Market I.D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-     <style>
-        body {
+    <style>
+        /* Your CSS style     body {
             background-color: #121212;
             color: #ffffff;
             font-family: Arial, sans-serif;
@@ -120,55 +120,19 @@
         .confirm-btn {
             margin-top: 20px;
             text-align: center;
-        }
+        }s */
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-light navbar-expand-lg" aria-label="Offcanvas navbar large">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    Raydium Market I.D
-                </a>
-                <button class="navbar-toggler mobile-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
-                    <div class="offcanvas-header">
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <div class="d-flex">
-                            <div id="app">
-                                <div style="position:fixed;z-index:9999;inset:16px;pointer-events:none"></div>
-                                <div style="display:block">
-                                    <div class="wallet-adapter-dropdown">
-                                        <span class="walletButtons"></span>
-                                        <ul aria-label="dropdown-list" class="wallet-adapter-dropdown-list false" role="menu">
-                                            <!-- Removed "Change Wallet" option -->
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div style="display:none">
-                                    <button class="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
-                                    <button class="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <!-- Your header content -->
     </header>
 
-    <!-- Move the subheader outside the container -->
-    <h3 class="subheader text-center mt-5">Create Market I.D</h3>
-
     <!-- Phantom Wallet Connect button -->
-    <button class="btn btn-primary phantom-connect" id="connectPhantomBtn">Connect with Phantom Wallet</button>
+    <button class="btn btn-primary" id="connectPhantomBtn">Connect with Phantom Wallet</button>
 
     <div class="container para-note text-center sliderArea mt-5">
-        <div class="swiper mySwiper">
+          <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <h3 class="market-id-h3">Cheapest option with a platform fee of 0.01 SOL</h3>
@@ -179,6 +143,7 @@
                 </div>
             </div>
         </div>
+    </div><!-- Your container content -->
     </div>
 
     <div class="container mt-100px mb-5">
@@ -232,47 +197,44 @@
         <!-- Remaining card blocks and components go here -->
 
     </div>
+<!-- Your form content -->
+    </div>
 
-    <footer class="color-footer bg-body-tertiary text-center text-lg-start">
-        <div class="text-center p-3">Copyright © 2024 Openbook Raydium. All rights reserved.</div>
+    <footer>
+        <!-- Your footer content -->
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://solana-labs.github.io/wallet-adapter/dist/wallet-adapter.js"></script>
-    <script src="script.js"></script>
-</body>
-</html><head>
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
-  </head>
-  <body>
     <script>
+        // Function to initialize Phantom Wallet and connect
+        const getProvider = async () => {
+            if ("solana" in window) {
+                await window.solana.connect(); // opens wallet to connect to
+                const provider = window.solana;
+                if (provider.isPhantom) {
+                    console.log("Is Phantom installed? ", provider.isPhantom);
+                    return provider;
+                }
+            } else {
+                console.error('Install https://www.phantom.app/');
+            }
+        };
 
-    const getProvider = async () => {
-        if ("solana" in window) {
-          
-          await window.solana.connect(); // opens wallet to connect to
-
-          const provider = window.solana;
-          if (provider.isPhantom) {
-            console.log("Is Phantom installed?  ", provider.isPhantom);
-            return provider;
-          }
-        } else {
-          document.write('Install https://www.phantom.app/');
-        }
-      };
-
-      window.onload = () => {
-
-        getProvider().then(provider => {
-          console.log('key', provider.publicKey.toString())
-        })
-        .catch(function(error){
-          console.log(error)
+        // Event listener for the connect wallet button
+        document.getElementById('connectPhantomBtn').addEventListener('click', async function() {
+            try {
+                const provider = await getProvider();
+                if (provider) {
+                    console.log('Connected wallet address:', provider.publicKey.toString());
+                    // Perform any additional actions after connecting the wallet
+                } else {
+                    console.error('Failed to connect to Phantom Wallet');
+                }
+            } catch (error) {
+                console.error('Error connecting to Phantom Wallet:', error);
+            }
         });
-
-      }
     </script>
-  </body>
+</body>
 </html>
