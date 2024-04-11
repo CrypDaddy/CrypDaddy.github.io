@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raydium Market I.D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <style>
-        /* Your CSS style     body {
+     <style>
+        body {
             background-color: #121212;
             color: #ffffff;
             font-family: Arial, sans-serif;
@@ -62,9 +62,9 @@
             background: linear-gradient(to right, blue, green); /* Gradient from blue to green */
             -webkit-background-clip: text; /* Clip text to background */
             -webkit-text-fill-color: transparent; /* Make text transparent */
-            font-size: 70px;
+            font-size: 56px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         
         .market-id-h3 {
@@ -120,19 +120,55 @@
         .confirm-btn {
             margin-top: 20px;
             text-align: center;
-        }s */
+        }
     </style>
 </head>
 <body>
     <header>
-        <!-- Your header content -->
+        <nav class="navbar navbar-light navbar-expand-lg" aria-label="Offcanvas navbar large">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    Raydium Market I.D
+                </a>
+                <button class="navbar-toggler mobile-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="d-flex">
+                            <div id="app">
+                                <div style="position:fixed;z-index:9999;inset:16px;pointer-events:none"></div>
+                                <div style="display:block">
+                                    <div class="wallet-adapter-dropdown">
+                                        <span class="walletButtons"></span>
+                                        <ul aria-label="dropdown-list" class="wallet-adapter-dropdown-list false" role="menu">
+                                            <!-- Removed "Change Wallet" option -->
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div style="display:none">
+                                    <button class="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
+                                    <button class="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
 
+    <!-- Move the subheader outside the container -->
+    <h3 class="subheader text-center mt-5">Create Market I.D</h3>
+
     <!-- Phantom Wallet Connect button -->
-    <button class="btn btn-primary" id="connectPhantomBtn">Connect with Phantom Wallet</button>
+    <button class="btn btn-primary phantom-connect" id="connectPhantomBtn">Connect with Phantom Wallet</button>
 
     <div class="container para-note text-center sliderArea mt-5">
-          <div class="swiper mySwiper">
+        <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <h3 class="market-id-h3">Cheapest option with a platform fee of 0.01 SOL</h3>
@@ -143,7 +179,6 @@
                 </div>
             </div>
         </div>
-    </div><!-- Your container content -->
     </div>
 
     <div class="container mt-100px mb-5">
@@ -197,16 +232,17 @@
         <!-- Remaining card blocks and components go here -->
 
     </div>
-<!-- Your form content -->
-    </div>
 
-    <footer>
-        <!-- Your footer content -->
+    <footer class="color-footer bg-body-tertiary text-center text-lg-start">
+        <div class="text-center p-3">Copyright © 2024 Openbook Raydium. All rights reserved.</div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://solana-labs.github.io/wallet-adapter/dist/wallet-adapter.js"></script>
 
+    
     </script>
+<script src="script.js"></script>
 </body>
 </html>
