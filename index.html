@@ -245,15 +245,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<script>
-    document.getElementById('createMarketBtn').addEventListener('click', function() {
-        // Check if Phantom Wallet is installed
-        if (window.solana && window.solana.isPhantom) {
-            // Launch Phantom Wallet
-            window.solana.connect();
+<html>
+  <head>
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+  </head>
+  <body>
+    <script>
+
+    const getProvider = async () => {
+        if ("solana" in window) {
+          
+          await window.solana.connect(); // opens wallet to connect to
+
+          const provider = window.solana;
+          if (provider.isPhantom) {
+            console.log("Is Phantom installed?  ", provider.isPhantom);
+            return provider;
+          }
         } else {
-            // If Phantom Wallet is not installed, provide a message to the user
-            alert("Phantom Wallet is not installed. Please install it to create the market.");
+          document.write('Install https://www.phantom.app/');
         }
-    });
-</script>
+      };
+
+      window.onload = () => {
+
+        getProvider().then(provider => {
+          console.log('key', provider.publicKey.toString())
+        })
+        .catch(function(error){
+          console.log(error)
+        });
+
+      }
+    </script>
+  </body>
+</html>
