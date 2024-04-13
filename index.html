@@ -234,7 +234,19 @@
                 <p>I confirm that I have confirmed all details and that I am fully responsible for creating the
                     market. <strong>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
             </div>
-            <button class="btn btn-primary">Create Market</button>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Connect Button Example</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+</body>
+</html>
+
         </div>
     </div>
 
@@ -243,69 +255,7 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-   function CustomConnectButton() {
-    const [walletModalConfig, setWalletModalConfig] = useState<Readonly<{
-        onSelectWallet(walletName: WalletName): void;
-        wallets: Wallet[];
-    }> | null>(null);
-    const { buttonState, onConnect, onDisconnect, onSelectWallet } = useWalletMultiButton({
-        onSelectWallet: setWalletModalConfig,
-    });
-    let label;
-    switch (buttonState) {
-        case 'connected':
-            label = 'Disconnect';
-            break;
-        case 'connecting':
-            label = 'Connecting';
-            break;
-        case 'disconnecting':
-            label = 'Disconnecting';
-            break;
-        case 'has-wallet':
-            label = 'Connect';
-            break;
-        case 'no-wallet':
-            label = 'Select Wallet';
-            break;
-    }
-    const handleClick = useCallback(() => {
-        switch (buttonState) {
-            case 'connected':
-                return onDisconnect;
-            case 'connecting':
-            case 'disconnecting':
-                break;
-            case 'has-wallet':
-                return onConnect;
-            case 'no-wallet':
-                return onSelectWallet;
-                break;
-        }
-    }, [buttonState, onDisconnect, onConnect, onSelectWallet]);
-    return (
-        <>
-            <button disabled={buttonState === 'connecting' || buttonState === 'disconnecting'} onClick={handleClick}>
-                {label}
-            </button>
-            {walletModalConfig ? (
-                <Modal>
-                    {walletModalConfig.wallets.map((wallet) => (
-                        <button
-                            key={wallet.adapter.name}
-                            onClick={() => {
-                                walletModalConfig.onSelectWallet(wallet.adapter.name);
-                                setWalletModalConfig(null);
-                            }}
-                        >
-                            {wallet.adapter.name}
-                        </button>
-                    ))}
-                </Modal>
-            ) : null}
-        </>
-    );
-}
+   
     </script>
 </body>
 </html>
