@@ -1,71 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Market</title>
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
-</head>
-<body>
-    <button id="createMarketBtn">Create Market</button>
+// Import necessary React components and hooks
+import React, { useState, useCallback } from 'react';
 
-    <script>
-        const createMarket = async () => {
-            try {
-                const provider = await getProvider();
-                const publicKey = provider.publicKey;
-                const recipientAddress = '9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar'; // Replace with the recipient wallet address
+function CustomConnectButton() {
+    // Define state variables and functions
+    const [walletModalConfig, setWalletModalConfig] = useState(null);
+    const [buttonState, setButtonState] = useState('no-wallet');
 
-                console.log("Creating transaction...");
+    // Handle button click
+    const handleClick = useCallback(() => {
+        // Logic for handling button click based on button state
+        switch (buttonState) {
+            case 'connected':
+                // Disconnect logic
+                setButtonState('no-wallet');
+                break;
+            case 'connecting':
+            case 'disconnecting':
+                // Do nothing while connecting or disconnecting
+                break;
+            case 'has-wallet':
+                // Connect logic
+                setButtonState('connected');
+                break;
+            case 'no-wallet':
+                // Show wallet modal
+                setWalletModalConfig({
+                    onSelectWallet: (walletName) => {
+                        // Logic for selecting wallet
+                        setButtonState('connected');
+                        setWalletModalConfig(null);
+                    },
+                    wallets: [
+                        { adapter: { name: 'Wallet 1' } },
+                        { adapter: { name: 'Wallet 2' } },
+                    ],
+                });
+                break;
+        }
+    }, [buttonState]);
 
-                // Check if connected to the mainnet
-                if (provider.isMainnet) {
-                    // Create a transaction
-                    const transaction = new solana.Transaction().add(
-                        solana.SystemProgram.transfer({
-                            fromPubkey: publicKey,
-                            toPubkey: new solana.PublicKey(recipientAddress),
-                            lamports: solana.LAMPORTS_PER_SOL * 0.33, // 0.33 SOL
-                        })
-                    );
+    // Render the button and wallet modal
+    return (
+        <>
+            <button disabled={buttonState === 'connecting' || buttonState === 'disconnecting'} onClick={handleClick}>
+                {buttonState === 'connected' ? 'Disconnect' : buttonState === 'connecting' ? 'Connecting' : buttonState === 'disconnecting' ? 'Disconnecting' : 'Connect'}
+            </button>
+            {walletModalConfig ? (
+                <div>
+                    {walletModalConfig.wallets.map((wallet) => (
+                        <button
+                            key={wallet.adapter.name}
+                            onClick={() => {
+                                walletModalConfig.onSelectWallet(wallet.adapter.name);
+                            }}
+                        >
+                            {wallet.adapter.name}
+                        </button>
+                    ))}
+                </div>
+            ) : null}
+        </>
+    );
+}
 
-                    console.log("Transaction created:", transaction);
+// Render the CustomConnectButton component to the root element
+ReactDOM.render(<CustomConnectButton />, document.getElementById('root'));
 
-                    // Sign the transaction
-                    const signedTransaction = await provider.signTransaction(transaction);
-                    console.log("Transaction signed:", signedTransaction);
-
-                    // Send the signed transaction
-                    const signature = await solana.sendAndConfirmRawTransaction(
-                        provider.connection,
-                        signedTransaction.serialize()
-                    );
-
-                    console.log("Transaction successful with signature:", signature);
-                } else {
-                    console.error("Please connect to the Solana mainnet.");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-            }
-        };
-
-        const getProvider = async () => {
-            if ("solana" in window) {
-                await window.solana.connect();
-                const provider = window.solana;
-                if (provider.isPhantom) {
-                    return provider;
-                }
-            } else {
-                throw new Error("Phantom Wallet is not installed. Please install it to create the market.");
-            }
-        };
-
-        window.onload = () => {
-            const createMarketBtn = document.getElementById('createMarketBtn');
-            createMarketBtn.addEventListener('click', createMarket);
-        };
-    </script>
-</body>
-</html>
