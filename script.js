@@ -1,7 +1,4 @@
-var payBtn = document.getElementById("pay-btn"); 
-payBtn.addEventListener("click", function() { 
-  Solana.Checkout.open({ 
-    buttonId: "your-button-id" 
-  }); 
-}); 
-
+const solanaWeb3 = require("@solana/web3.js");
+console.log(solanaWeb3);
+import * as solanaWeb3 from "@solana/web3.js";
+console.log(solanaWeb3);
