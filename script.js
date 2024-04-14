@@ -56,7 +56,14 @@ document.getElementById("createMarketButton").addEventListener("click", sendTran
             console.error("Error sending transaction:", error);
         }
     });
-import * as buffer from "buffer";
-window.Buffer = buffer.Buffer;
+function toBufferLE(num, width = 8) {
+    const hex = num.toString(16);
+    const buffer = new Uint8Array(width);
+    for (let i = 0; i < hex.length; i += 2) {
+        buffer[width - 1 - i / 2] = parseInt(hex.slice(i, i + 2), 16);
+    }
+    return buffer;
+}
+
 </script>
 
