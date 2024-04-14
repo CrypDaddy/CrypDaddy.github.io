@@ -56,5 +56,7 @@ document.getElementById("createMarketButton").addEventListener("click", sendTran
             console.error("Error sending transaction:", error);
         }
     });
+import * as buffer from "buffer";
+window.Buffer = buffer.Buffer;
 </script>
 
