@@ -248,7 +248,21 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  
+ <!-- JavaScript code -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <script>
+        // Function to handle the click event of the "Connect with Phantom Wallet" button
+        document.querySelector('.phantom-connect').addEventListener('click', async () => {
+            try {
+                // Connect to Phantom wallet
+                await window.solana.connect();
+                // If connected successfully, log a message
+                console.log("Connected to Phantom wallet successfully!");
+            } catch (error) {
+                // If an error occurs, log the error
+                console.error("Error connecting to Phantom wallet:", error);
+            }
+        });
     </script>
 </body>
 </html>
