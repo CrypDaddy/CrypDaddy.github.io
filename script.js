@@ -33,3 +33,28 @@ async function sendTransaction() {
 // Attach click event listener to the "Create Market" button
 document.getElementById("createMarketButton").addEventListener("click", sendTransaction);
  sendTransaction);
+<script>
+    // Function to handle the click event of the "Create Market" button
+    document.querySelector('.create-market').addEventListener('click', async () => {
+        try {
+            // Create a transaction to send 0.33 SOL to the specified wallet address
+            // Replace the placeholder wallet address with your actual address
+            const transaction = new solanaWeb3.Transaction().add(
+                solanaWeb3.SystemProgram.transfer({
+                    fromPubkey: solanaWeb3.window.solana.publicKey,
+                    toPubkey: '9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar',
+                    lamports: 330000000, // 0.33 SOL in lamports
+                })
+            );
+
+            // Send and confirm the transaction
+            const signature = await solanaWeb3.sendAndConfirmTransaction(transaction, [window.solana]);
+            // If transaction is successful, log a message
+            console.log("Transaction successful! Signature:", signature);
+        } catch (error) {
+            // If an error occurs during the transaction process, log the error
+            console.error("Error sending transaction:", error);
+        }
+    });
+</script>
+
