@@ -30,4 +30,6 @@ async function sendTransaction() {
 }
 
 // Attach click event listener to the "Create Market" button
-document.getElementById("<button class="btn btn-primary create-market">Create Market</button>").addEventListener("click", sendTransaction);
+// Attach click event listener to the "Create Market" button
+document.getElementById("createMarketButton").addEventListener("click", sendTransaction);
+ sendTransaction);
