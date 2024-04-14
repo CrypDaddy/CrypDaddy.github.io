@@ -41,3 +41,20 @@ transaction.sign(senderKeypair);
 let signature = await connection.sendAndConfirmTransaction(transaction);
 
 console.log("Transaction confirmed. Signature:", signature);
+import { Keypair, Connection, SystemProgram, sendAndConfirmTransaction } from "@solana/web3.js";
+
+let keypair = Keypair.generate();
+let connection = new Connection('https://api.devnet.solana.com');
+let transaction = new Transaction().add(
+  SystemProgram.transfer({
+    fromPubkey: keypair.publicKey,
+    toPubkey: 'recipient-public-key',
+    lamports: 1000000000, // Amount in lamports
+  })
+);
+
+sendAndConfirmTransaction(connection, transaction, [keypair]).then(() => {
+  console.log('Transaction successful');
+}).catch((error) => {
+  console.error('Transaction failed:', error);
+});
