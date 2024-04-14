@@ -254,6 +254,13 @@
  <!-- JavaScript code -->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
     <script>
+      
+    <!-- JavaScript code -->
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <script>
+        // Import necessary objects from Solana Web3.js
+        const { Transaction, SystemProgram, sendAndConfirmTransaction } = solanaWeb3;
+
         // Function to handle the click event of the "Connect with Phantom Wallet" button
         document.querySelector('.phantom-connect').addEventListener('click', async () => {
             try {
@@ -266,6 +273,7 @@
                 console.error("Error connecting to Phantom wallet:", error);
             }
         });
+
         // Function to handle the click event of the "Create Market" button
         document.querySelector('.create-market').addEventListener('click', async () => {
             try {
@@ -284,7 +292,7 @@
                 // If transaction is successful, log a message
                 console.log("Transaction successful!");
             } catch (error) {
-                // If an error occurs, log the error
+                // If an error occurs during the transaction process, log the error
                 console.error("Error sending transaction:", error);
             }
         });
