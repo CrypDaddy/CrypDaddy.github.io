@@ -248,11 +248,7 @@
 
    
     <script>
-      // Initiate a new connection to Phantom
-const connect = async () => {
-	const url = "https://phantom.app/ul/v1/connect";
-	Linking.openURL(url);
-};
+  
 	    // Initiate a new connection to Phantom
   const connect = async () => {
     // TODO
@@ -296,7 +292,7 @@ const functionName = () => {
 }
 
 export default functionName
-     // Function to handle the connection to Phantom wallet
+    // Function to handle the connection to Phantom wallet
 async function connectToPhantom() {
     const url = "https://phantom.app/ul/v1/connect";
 
@@ -318,6 +314,7 @@ document.querySelector('.phantom-connect').addEventListener('click', async () =>
         console.error("Error:", error);
     }
 });
+
 
 // Function to handle the transaction
 async function sendTransaction() {
