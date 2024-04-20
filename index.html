@@ -249,7 +249,11 @@
 
    
     <script>
-       import React from 'react'
+      // Initiate a new connection to Phantom
+const connect = async () => {
+	const url = "https://phantom.app/ul/v1/connect";
+	Linking.openURL(url);
+};
 
 const functionName = () => {
     return (
