@@ -124,6 +124,10 @@
     </style>
 </head>
 <body>
+	 <h1>Solana Web3.js Example</h1>
+    <button id="generateKeyPairBtn">Generate Keypair</button>
+    <button id="createTransactionBtn">Create Transaction</button>
+    <button id="sendTransactionBtn">Send Transaction</button>
 <header>
         <nav class="navbar navbar-light navbar-expand-lg" aria-label="Offcanvas navbar large">
             <div class="container">
@@ -241,14 +245,27 @@
     <footer class="color-footer bg-body-tertiary text-center text-lg-start">
         <div class="text-center p-3">Copyright © 2024 Raydium Market ID. All rights reserved.</div>
     </footer>
-<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+ <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 
     <!-- Include Phantom Wallet Script -->
     <script src="https://solana.com/phantom/assets/phantom.js"></script>
 
    
     <script>
-  
+  <script>
+        document.getElementById("generateKeyPairBtn").addEventListener("click", function() {
+            const { Keypair } = solanaWeb3;
+            let keypair = Keypair.generate();
+            console.log("Generated Keypair:", keypair);
+        });
+
+        document.getElementById("createTransactionBtn").addEventListener("click", function() {
+            // Your code to create a transaction
+        });
+
+        document.getElementById("sendTransactionBtn").addEventListener("click", function() {
+            // Your code to send a transaction
+        });
 	    // Initiate a new connection to Phantom
   const connect = async () => {
     // TODO
