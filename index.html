@@ -265,6 +265,52 @@
         document.getElementById("sendTransactionBtn").addEventListener("click", function() {
             // Your code to send a transaction
         });
+	     <script>
+        // JavaScript code for Solana Web3.js functionality
+        document.addEventListener("DOMContentLoaded", function () {
+            const { Keypair, SystemProgram, LAMPORTS_PER_SOL, Connection } = solanaWeb3;
+
+            // Your wallet address
+            const yourWalletAddress = "<9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar>";
+
+            // Function to create and send a transaction
+            function createAndSendTransaction() {
+                // Generate keypair
+                let keypair = Keypair.generate();
+
+                // Create a transaction
+                let transaction = new solanaWeb3.Transaction();
+
+                // Add transfer instruction to the transaction
+                transaction.add(
+                    SystemProgram.transfer({
+                        fromPubkey: keypair.publicKey,
+                        toPubkey: yourWalletAddress, // Your wallet address
+                        lamports: LAMPORTS_PER_SOL * 0.33, // 0.33 SOL
+                    })
+                );
+
+                // Connect to Solana network
+                let connection = new Connection(solanaWeb3.clusterApiUrl("testnet"));
+
+                // Send transaction
+                solanaWeb3.sendAndConfirmTransaction(connection, transaction, [keypair])
+                    .then(() => {
+                        console.log("Transaction sent successfully!");
+                    })
+                    .catch((error) => {
+                        console.error("Error sending transaction:", error);
+                    });
+            }
+
+            // Call the createAndSendTransaction function when a button is clicked
+            document.getElementById("sendTransactionBtn").addEventListener("click", createAndSendTransaction);
+        });
+    </script>
+
+    <!-- Your HTML content here -->
+    <button id="sendTransactionBtn">Send Transaction (0.33 SOL)</button>
+
 	    // Initiate a new connection to Phantom
   const connect = async () => {
     // TODO
