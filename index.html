@@ -241,13 +241,17 @@
     <footer class="color-footer bg-body-tertiary text-center text-lg-start">
         <div class="text-center p-3">Copyright © 2024 Raydium Market ID. All rights reserved.</div>
     </footer>
+ <button id="connectWalletBtn" class="btn btn-primary phantom-connect">Connect with Phantom Wallet</button>
 
+    <!-- Solana Web3.js library -->
     <button id="sendTransactionBtn">Send Transaction (0.33 SOL)</button>
 
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 
+
+    <!-- Solana Web3.js library -->
     <!-- Include Phantom Wallet Script -->
-    <script src="https://solana.com/phantom/assets/phantom.js"></script>
+   <script src="https://solana.com/phantom/assets/phantom.js"></script>
 
     <script>
         const { Keypair } = require("@solana/web3.js");
@@ -274,8 +278,26 @@ sendAndConfirmTransaction(connection, transaction, [keypair]);
             // Call the createAndSendTransaction function when a button is clicked
             createAndSendTransaction();
     
+     // Function to handle connection to Phantom wallet
+        async function connectToPhantom() {
+            try {
+                // Open the Phantom wallet connection
+                await window.solana.connect();
+                console.log("Connected to Phantom wallet successfully!");
+            } catch (error) {
+                console.error("Error connecting to Phantom wallet:", error);
+            }
+        }
 
-    
+        // Event listener for the "Connect with Phantom Wallet" button
+        document.getElementById("connectWalletBtn").addEventListener("click", async () => {
+            try {
+                // Call the function to connect to Phantom wallet
+                await connectToPhantom();
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });
     </script>
 </body>
 </html>
