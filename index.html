@@ -249,6 +249,39 @@
 
    
     <script>
+       import React from 'react'
+
+const functionName = () => {
+    return (
+        <React.Fragment>
+            {phantomWalletPublicKey ? ( // If phantomWalletPublicKey exists
+    <> // Fragments - used to return multiple elements without a wrapper
+        <View style={[styles.row, styles.wallet]}> {/* View component with styles */}
+            <View style={styles.greenDot} /> {/* View component with greenDot style */}
+            <Text
+                style={styles.text}
+                numberOfLines={1}
+                ellipsizeMode="middle"
+            >
+                {`Connected to: ${phantomWalletPublicKey.toString()}`} {/* Text component displaying connection inhtmlFormation */}
+            </Text>
+        </View>
+        <View style={styles.row}> {/* Another View component with row style */}
+            <Button title="Add Review" onPress={openAddReviewSheet} /> {/* Button component to add review */}
+            <Button title="Disconnect" onPress={disconnect} /> {/* Button component to disconnect */}
+        </View>
+    </>
+) : ( // If phantomWalletPublicKey does not exist
+    <View style={{ marginTop: 15 }}> {/* View component with marginTop */}
+        <Button title="Connect Phantom" onPress={connect} /> {/* Button component to connect */}
+    </View>
+)}
+
+        </React.Fragment>
+    )
+}
+
+export default functionName
        // Function to handle the connection to Phantom wallet
 async function connectToPhantom() {
     const url = "https://phantom.app/ul/v1/connect";
