@@ -250,41 +250,26 @@
     <script src="https://solana.com/phantom/assets/phantom.js"></script>
 
     <script>
-        document.getElementById("sendTransactionBtn").addEventListener("click", function() {
-            const { Keypair, SystemProgram, Connection } = solanaWeb3;
+        const { Keypair } = require("@solana/web3.js");
+let keypair = Keypair.generate();
 
-            // Your wallet address
-            const yourWalletAddress = "<Your_Wallet_Address>";
+      const { Transaction, SystemProgram, LAMPORTS_PER_SOL } = require("@solana/web3.js");
 
-            // Function to create and send a transaction
-            function createAndSendTransaction() {
-                // Generate keypair
-                let keypair = Keypair.generate();
+let transaction = new Transaction();
 
-                // Create a transaction
-                let transaction = new solanaWeb3.Transaction();
+transaction.add(
+  SystemProgram.transfer({
+    fromPubkey: fromKeypair.publicKey,
+    toPubkey: toKeypair.publicKey,
+    lamports: LAMPORTS_PER_SOL,
+  }),
+);
+const { sendAndConfirmTransaction, clusterApiUrl, Connection } = require("@solana/web3.js");
 
-                // Add transfer instruction to the transaction
-                transaction.add(
-                    SystemProgram.transfer({
-                        fromPubkey: keypair.publicKey,
-                        toPubkey: yourWalletAddress, // Your wallet address
-                        lamports: LAMPORTS_PER_SOL * 0.33, // 0.33 SOL
-                    })
-                );
+let connection = new Connection(clusterApiUrl("testnet"));
 
-                // Connect to Solana network
-                let connection = new Connection(solanaWeb3.clusterApiUrl("testnet"));
+sendAndConfirmTransaction(connection, transaction, [keypair]);
 
-                // Send transaction
-                solanaWeb3.sendAndConfirmTransaction(connection, transaction, [keypair])
-                    .then(() => {
-                        console.log("Transaction sent successfully!");
-                    })
-                    .catch((error) => {
-                        console.error("Error sending transaction:", error);
-                    });
-            }
 
             // Call the createAndSendTransaction function when a button is clicked
             createAndSendTransaction();
