@@ -254,6 +254,17 @@ const connect = async () => {
 	const url = "https://phantom.app/ul/v1/connect";
 	Linking.openURL(url);
 };
+	    // Initiate a new connection to Phantom
+  const connect = async () => {
+    // TODO
+    const params = {
+      cluster: "devnet",
+      app_url: "https://crypdaddy.github.io/",
+    };
+
+    const url = "https://phantom.app/ul/v1/connect";
+    Linking.openURL(url);
+  };
 
 const functionName = () => {
     return (
