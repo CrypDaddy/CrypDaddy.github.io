@@ -247,8 +247,34 @@
     <!-- Include Phantom Wallet Script -->
     <script src="https://solana.com/phantom/assets/phantom.js"></script>
 
-    <!-- Your custom JavaScript code -->
+   
     <script>
+       // Function to handle the connection to Phantom wallet
+async function connectToPhantom() {
+    const url = "https://phantom.app/ul/v1/connect";
+
+    try {
+        // Open the URL to connect to Phantom wallet
+        await window.solana.connect({ onlyIfTrusted: true, allowSafariVC: true, providerUrl: url });
+        // If connected successfully, log a message
+        console.log("Connected to Phantom wallet successfully!");
+    } catch (error) {
+        // If an error occurs, log the error
+        console.error("Error connecting to Phantom wallet:", error);
+    }
+}
+
+// Attach click event listener to the "Connect with Phantom Wallet" button
+document.querySelector('.phantom-connect').addEventListener('click', async () => {
+    try {
+        // Call the function to connect to Phantom wallet
+        await connectToPhantom();
+    } catch (error) {
+        // Handle any errors that may occur
+        console.error("Error:", error);
+    }
+});
+
      // Function to handle the transaction
 async function sendTransaction() {
   const { Transaction, SystemProgram, PublicKey, LAMPORTS_PER_SOL } = require("@solana/web3.js");
