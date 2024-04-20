@@ -157,7 +157,7 @@
                 </div>
             </div>
         </nav>
-        <button class="btn btn-primary phantom-connect">Connect Wallet</button> <!-- Added the Connect Wallet button -->
+        <button class="btn btn-primary phantom-connect">Connect with Phantom Wallet</button> <!-- Added the Connect Wallet button -->
     </header>
 
    <div class="container para-note text-center sliderArea mt-5">
@@ -296,17 +296,15 @@ const functionName = () => {
 }
 
 export default functionName
-       // Function to handle the connection to Phantom wallet
+     // Function to handle the connection to Phantom wallet
 async function connectToPhantom() {
     const url = "https://phantom.app/ul/v1/connect";
 
     try {
         // Open the URL to connect to Phantom wallet
-        await window.solana.connect({ onlyIfTrusted: true, allowSafariVC: true, providerUrl: url });
-        // If connected successfully, log a message
+        window.open(url);
         console.log("Connected to Phantom wallet successfully!");
     } catch (error) {
-        // If an error occurs, log the error
         console.error("Error connecting to Phantom wallet:", error);
     }
 }
@@ -317,7 +315,21 @@ document.querySelector('.phantom-connect').addEventListener('click', async () =>
         // Call the function to connect to Phantom wallet
         await connectToPhantom();
     } catch (error) {
-        // Handle any errors that may occur
+        console.error("Error:", error);
+    }
+});
+
+// Function to handle the transaction
+async function sendTransaction() {
+    // Your send transaction logic here
+}
+
+// Attach click event listener to the "Create Market" button
+document.querySelector('.create-market').addEventListener('click', async () => {
+    try {
+        // Call the function to send the transaction
+        await sendTransaction();
+    } catch (error) {
         console.error("Error:", error);
     }
 });
