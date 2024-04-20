@@ -1,46 +1,11 @@
-// Function to handle the transaction
-async function sendTransaction() {
-    const { Keypair, Transaction, SystemProgram, LAMPORTS_PER_SOL } = require("@solana/web3.js");
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { getPhantomWallet } from '@solana/wallet-adapter-wallets';
 
-    let fromKeypair = Keypair.generate();
-    let toAddress = "9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar"; // Your wallet address
-    let transactionFee = 0.33 * LAMPORTS_PER_SOL; // Transaction fee in lamports
+const network = WalletAdapterNetwork.Mainnet;
+const wallet = getPhantomWallet();
 
-    let transaction = new Transaction();
-
-    transaction.add(
-        SystemProgram.transfer({
-            fromPubkey: fromKeypair.publicKey,
-            toPubkey: toAddress,
-            lamports: transactionFee,
-        }),
-    );
-
-    const { sendAndConfirmTransaction, clusterApiUrl, Connection } = require("@solana/web3.js");
-
-    let connection = new Connection(clusterApiUrl("testnet"));
-
-    // Send and confirm the transaction
-    try {
-        await sendAndConfirmTransaction(connection, transaction, [fromKeypair]);
-        console.log("Transaction successful");
-    } catch (error) {
-        console.error("Transaction failed:", error);
-    }
-}
-
-// Attach click event listener to the "Create Market" button
-document.querySelector('.create-market').addEventListener('click', sendTransaction);
-
-// Function to handle the click event of the "Connect with Phantom Wallet" button
-document.querySelector('.phantom-connect').addEventListener('click', async () => {
-    try {
-        // Connect to Phantom wallet
-        await window.solana.connect();
-        // If connected successfully, log a message
-        console.log("Connected to Phantom wallet successfully!");
-    } catch (error) {
-        // If an error occurs, log the error
-        console.error("Error connecting to Phantom wallet:", error);
-    }
+// Initialize the adapter with the chosen wallet and network
+const walletAdapter = new WalletAdapter({
+    wallet,
+    network,
 });
