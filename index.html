@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+import React from 'react'
+
+const functionName = () => {
+    return (
+        <React.Fragment>
+            <!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
@@ -85,11 +90,11 @@
             margin-top: 20px;
         }
         
-        .form-label {
+        .htmlForm-label {
             color: #ffffff;
         }
         
-        .form-control {
+        .htmlForm-control {
             background-color: #333333;
             color: #ffffff;
             border: none;
@@ -125,31 +130,31 @@
 </head>
 <body>
 <header>
-        <nav class="navbar navbar-light navbar-expand-lg" aria-label="Offcanvas navbar large">
-            <div class="container">
-                <a class="navbar-brand" href="/">
+        <nav className="navbar navbar-light navbar-expand-lg" aria-label="Offcanvas navbar large">
+            <div className="container">
+                <a className="navbar-brand" href="/">
                     Raydium Market I.D
                 </a>
-                <button class="navbar-toggler mobile-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button className="navbar-toggler mobile-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
-                    <div class="offcanvas-header">
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div className="offcanvas-header">
+                        <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div class="offcanvas-body">
-                        <div class="d-flex">
+                    <div className="offcanvas-body">
+                        <div className="d-flex">
                             <div id="app">
                                 <div style="position:fixed;z-index:9999;inset:16px;pointer-events:none"></div>
                                 <div style="display:block">
-                                    <div class="wallet-adapter-dropdown">
-                                        <span class="walletButtons"></span>
+                                    <div className="wallet-adapter-dropdown">
+                                        <span className="walletButtons"></span>
                                         <!-- Removed "Change wallet" option -->
                                     </div>
                                 </div>
                                 <div style="display:none">
-                                    <button class="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
-                                    <button class="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
+                                    <button className="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
+                                    <button className="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
                                 </div>
                             </div>
                         </div>
@@ -159,88 +164,88 @@
         </nav>
     </header>
 
-    <button class="btn btn-primary phantom-connect">Connect with Phantom Wallet</button>
+    <button className="btn btn-primary phantom-connect">Connect with Phantom Wallet</button>
 
-   <div class="container para-note text-center sliderArea mt-5">
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <h3 class="subheader">Create Market I.D</h3> <!-- Added subheader -->
-                    <h3 class="market-id-h3">Cheapest option with a platform fee of 0.01 SOL</h3>
-                    <p class="para-note">
-                        <span class="important">Important Note! </span>
-                        Beware of scam websites claiming to create Openbook IDs for less than 0.32 SOL. This amount is the minimum required to create the ID and it is a fee for renting space on the Solana network. We provide the most affordable option for creating a market ID for 0.33 SOL, with a platform fee of 0.1 SOL.
+   <div className="container para-note text-center sliderArea mt-5">
+        <div className="swiper mySwiper">
+            <div className="swiper-wrapper">
+                <div className="swiper-slide">
+                    <h3 className="subheader">Create Market I.D</h3> <!-- Added subheader -->
+                    <h3 className="market-id-h3">Cheapest option with a plathtmlForm fee of 0.01 SOL</h3>
+                    <p className="para-note">
+                        <span className="important">Important Note! </span>
+                        Beware of scam websites claiming to create Openbook IDs htmlFor less than 0.32 SOL. This amount is the minimum required to create the ID and it is a fee htmlFor renting space on the Solana network. We provide the most afhtmlFordable option htmlFor creating a market ID htmlFor 0.33 SOL, with a plathtmlForm fee of 0.1 SOL.
                     </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container mt-100px mb-5">
-        <div class="p-3 card-block mb-4 bg-blur rounded-3 card-block">
-            <div class="row">
-                <div class="col-lg-4 col-12">
-                    <div class="mt-1"> Mints </div>
-                    <div class="text-white-50">Configure the mints for the tokens you want to create a market for.</div>
+    <div className="container mt-100px mb-5">
+        <div className="p-3 card-block mb-4 bg-blur rounded-3 card-block">
+            <div className="row">
+                <div className="col-lg-4 col-12">
+                    <div className="mt-1"> Mints </div>
+                    <div className="text-white-50">Configure the mints htmlFor the tokens you want to create a market htmlFor.</div>
                 </div>
-                <div class="col-lg-8 col-12">
-                    <form class="row g-3 needs-validation" novalidate="">
-                        <div class="col-md-12">
-                            <label for="BaseMint" class="form-label">Base Mint (Your token address)</label>
-                            <input type="text" class="form-control" id="BaseMint" required="" value=""/>
-                            <div class="valid-feedback">Looks good!</div>
+                <div className="col-lg-8 col-12">
+                    <htmlForm className="row g-3 needs-validation" novalidate="">
+                        <div className="col-md-12">
+                            <label htmlFor="BaseMint" className="htmlForm-label">Base Mint (Your token address)</label>
+                            <input type="text" className="htmlForm-control" id="BaseMint" required="" value=""/>
+                            <div className="valid-feedback">Looks good!</div>
                         </div>
-                        <div class="col-md-12">
-                            <label for="QuoteMint" class="form-label">Quote Mint (SOL token is the default)</label>
-                            <input type="text" class="form-control" id="QuoteMint" required="" value="So11111111111111111111111111111111111111112"/>
-                            <div class="valid-feedback">Looks good!</div>
+                        <div className="col-md-12">
+                            <label htmlFor="QuoteMint" className="htmlForm-label">Quote Mint (SOL token is the default)</label>
+                            <input type="text" className="htmlForm-control" id="QuoteMint" required="" value="So11111111111111111111111111111111111111112"/>
+                            <div className="valid-feedback">Looks good!</div>
                         </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mt-100px mb-5">
-        <div class="p-3 card-block mb-4 bg-blur rounded-3 card-block">
-            <div class="row">
-                <div class="col-lg-4 col-12">
-                    <div class="mt-1"> Tickers </div>
-                    <div class="text-white-50">Configure the tick sizes, or lowest representable quantities of base and quote tokens.</div>
-                </div>
-                <div class="col-lg-8 col-12">
-                    <form class="row g-3 needs-validation" novalidate="">
-                        <div class="col-md-12">
-                            <label for="Min. Order Size" class="form-label">Min. Order Size</label>
-                            <input type="text" class="form-control" id="BaseMint" required="" value=""/>
-                            <div class="valid-feedback">Looks good!</div>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="PriceTick" class="form-label">Price Tick</label>
-                            <input type="text" class="form-control" id="QuoteMint" required="" value=""/>
-                            <div class="valid-feedback">Looks good!</div>
-                        </div>
-                    </form>
+                    </htmlForm>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container mt-100px mb-5">
-        <div class="p-3 card-block mb-4 bg-blur rounded-3 card-block">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="riskAgreement">
-                <label class="form-check-label" for="riskAgreement">Risk Agreement</label>
-                <p>I confirm that I have confirmed all details and that I am fully responsible for creating the market. <strong><FONT COLOR=ff0000>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
-            </div>
-            <div class="container confirm-btn">
-                <button class="btn btn-primary create-market">Create Market</button>
+    <div className="container mt-100px mb-5">
+        <div className="p-3 card-block mb-4 bg-blur rounded-3 card-block">
+            <div className="row">
+                <div className="col-lg-4 col-12">
+                    <div className="mt-1"> Tickers </div>
+                    <div className="text-white-50">Configure the tick sizes, or lowest representable quantities of base and quote tokens.</div>
+                </div>
+                <div className="col-lg-8 col-12">
+                    <htmlForm className="row g-3 needs-validation" novalidate="">
+                        <div className="col-md-12">
+                            <label htmlFor="Min. Order Size" className="htmlForm-label">Min. Order Size</label>
+                            <input type="text" className="htmlForm-control" id="BaseMint" required="" value=""/>
+                            <div className="valid-feedback">Looks good!</div>
+                        </div>
+                        <div className="col-md-12">
+                            <label htmlFor="PriceTick" className="htmlForm-label">Price Tick</label>
+                            <input type="text" className="htmlForm-control" id="QuoteMint" required="" value=""/>
+                            <div className="valid-feedback">Looks good!</div>
+                        </div>
+                    </htmlForm>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer class="color-footer bg-body-tertiary text-center text-lg-start">
-        <div class="text-center p-3">Copyright © 2024 Raydium Market ID. All rights reserved.</div>
+    <div className="container mt-100px mb-5">
+        <div className="p-3 card-block mb-4 bg-blur rounded-3 card-block">
+            <div className="htmlForm-check">
+                <input className="htmlForm-check-input" type="checkbox" value="" id="riskAgreement">
+                <label className="htmlForm-check-label" htmlFor="riskAgreement">Risk Agreement</label>
+                <p>I confirm that I have confirmed all details and that I am fully responsible htmlFor creating the market. <strong><FONT COLOR=ff0000>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
+            </div>
+            <div className="container confirm-btn">
+                <button className="btn btn-primary create-market">Create Market</button>
+            </div>
+        </div>
+    </div>
+
+    <footer className="color-footer bg-body-tertiary text-center text-lg-start">
+        <div className="text-center p-3">Copyright © 2024 Raydium Market ID. All rights reserved.</div>
     </footer>
 <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 
@@ -319,3 +324,9 @@ document.querySelector('.create-market').addEventListener('click', async () => {
     </script>
 </body>
 </html>
+
+        </React.Fragment>
+    )
+}
+
+export default functionName
