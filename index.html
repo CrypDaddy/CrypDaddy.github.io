@@ -142,7 +142,42 @@
                     <div class="offcanvas-body">
                         <!-- Phantom wallet buttons -->
                         <button class="btn btn-primary phantom-connect">Connect with Phantom Wallet</button>
-                        <!-- Add your wallet adapter dropdown or buttons here -->
+<header>
+  <nav class="navbar navbar-light navbar-expand-lg" aria-label="Offcanvas navbar large">
+      <div class="container">
+          <a class="navbar-brand" href="/">
+              Raydium Market I.D
+          </a>
+          <button class="navbar-toggler mobile-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+              <div class="offcanvas-header">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                  <div class="d-flex">
+                      <div id="app">
+                          <div style="position:fixed;z-index:9999;inset:16px;pointer-events:none"></div>
+                          <div style="display:block">
+                              <div class="wallet-adapter-dropdown">
+                                  <span class="walletButtons"></span>
+                                  <!-- Removed "Change wallet" option -->
+                              </div>
+                          </div>
+                          <div style="display:none">
+                              <button class="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
+                              <button class="wallet-adapter-button wallet-adapter-button-trigger">Create</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </nav>
+  <button class="btn btn-primary phantom-connect">Connect Wallet</button> <!-- Changed button text to "Connect Wallet" -->
+</header>
+
                     </div>
                 </div>
             </div>
