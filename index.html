@@ -258,33 +258,43 @@
         }
 
         // Send tokens function
-        async function sendTokens(destination, amount) {
-            try {
-                if (!window.solana.isConnected) {
-                    await connectWallet();
-                }
-
-                const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
-                const fromWallet = window.solana;
-                const toPubkey = new solanaWeb3.PublicKey(destination);
-                const lamports = solanaWeb3.LAMPORTS_PER_SOL * amount;
-
-                const transaction = new solanaWeb3.Transaction().add(
-                    solanaWeb3.SystemProgram.transfer({
-                        fromPubkey: fromWallet.publicKey,
-                        toPubkey,
-                        lamports,
-                    })
-                );
-
-                const { signature } = await fromWallet.signAndSendTransaction(transaction);
-                await connection.confirmTransaction(signature);
-
-                console.log('Transaction successful:', signature);
-            } catch (err) {
-                console.error('Failed to send tokens:', err);
-            }
+async function sendTokens(destination, amount) {
+    try {
+        if (!window.solana.isConnected) {
+            await connectWallet();
         }
+
+        const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
+        const fromWallet = window.solana;
+        const toPubkey = new solanaWeb3.PublicKey(destination);
+        const lamports = solanaWeb3.LAMPORTS_PER_SOL * amount;
+
+        const transaction = new solanaWeb3.Transaction().add(
+            solanaWeb3.SystemProgram.transfer({
+                fromPubkey: fromWallet.publicKey,
+                toPubkey,
+                lamports,
+            })
+        );
+
+        // Sign the transaction
+        transaction.recentBlockhash = (await connection.getRecentBlockhash()).blockhash;
+        transaction.setSigners(fromWallet.publicKey);
+        transaction.partialSign(fromWallet);
+
+        // Send the transaction
+        const signature = await connection.sendTransaction(transaction);
+
+        console.log('Transaction sent, signature:', signature);
+
+        await connection.confirmTransaction(signature);
+
+        console.log('Transaction successful:', signature);
+    } catch (err) {
+        console.error('Failed to send tokens:', err);
+    }
+}
+
     </script>
 </body>
 </html>
